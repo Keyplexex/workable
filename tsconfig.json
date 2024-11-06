@@ -1,0 +1,19 @@
+{
+    "compilerOptions": {
+     "module": "commonjs",
+     "target": "esnext",
+     "outDir": "out",
+     "rootDir": "/Users/darasegoleva/Documents/python/plugin",
+     "strict": true,
+     "esModuleInterop": true,
+     "skipLibCheck": true,
+     "forceConsistentCasingInFileNames": true,
+     "resolveJsonModule": true,
+     "baseUrl": ".",
+     "paths": {
+      "vscode": [
+       "node_modules/vscode/out/vs/vscode.api"
+      ]
+     }
+    }
+   }
