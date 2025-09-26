@@ -1,0 +1,5 @@
+if(EXISTS "/Users/darasegoleva/Documents/с++/labwork4/build/tests/argparser_tests[1]_tests.cmake")
+  include("/Users/darasegoleva/Documents/с++/labwork4/build/tests/argparser_tests[1]_tests.cmake")
+else()
+  add_test(argparser_tests_NOT_BUILT argparser_tests_NOT_BUILT)
+endif()
