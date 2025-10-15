@@ -1,0 +1,2 @@
+/Library/Developer/CommandLineTools/usr/bin/ar qc libitmoscript.a CMakeFiles/itmoscript.dir/interpreter/binaryOperators.cpp.o CMakeFiles/itmoscript.dir/interpreter/interpreter.cpp.o CMakeFiles/itmoscript.dir/interpreter/scope.cpp.o CMakeFiles/itmoscript.dir/interpreter/stdlib.cpp.o CMakeFiles/itmoscript.dir/interpreter/value.cpp.o CMakeFiles/itmoscript.dir/lexer/lexer.cpp.o CMakeFiles/itmoscript.dir/lexer/token.cpp.o CMakeFiles/itmoscript.dir/parser/ASTNode.cpp.o CMakeFiles/itmoscript.dir/parser/parser.cpp.o
+/Library/Developer/CommandLineTools/usr/bin/ranlib libitmoscript.a

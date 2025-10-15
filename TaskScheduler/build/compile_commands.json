@@ -1,0 +1,38 @@
+[
+{
+  "directory": "/Users/darasegoleva/Documents/с++/labwork9-Keyplexex/build/bin",
+  "command": "/usr/bin/clang++  -I/Users/darasegoleva/Documents/с++/labwork9-Keyplexex/lib -I/Users/darasegoleva/Documents/с++/labwork9-Keyplexex -g -std=gnu++2b -arch arm64 -o CMakeFiles/labwork9.dir/main.cpp.o -c /Users/darasegoleva/Documents/с++/labwork9-Keyplexex/bin/main.cpp",
+  "file": "/Users/darasegoleva/Documents/с++/labwork9-Keyplexex/bin/main.cpp",
+  "output": "bin/CMakeFiles/labwork9.dir/main.cpp.o"
+},
+{
+  "directory": "/Users/darasegoleva/Documents/с++/labwork9-Keyplexex/build/test",
+  "command": "/usr/bin/clang++  -I/Users/darasegoleva/Documents/с++/labwork9-Keyplexex/lib -I/Users/darasegoleva/Documents/с++/labwork9-Keyplexex -isystem /Users/darasegoleva/Documents/с++/labwork9-Keyplexex/build/_deps/googletest-src/googletest/include -isystem /Users/darasegoleva/Documents/с++/labwork9-Keyplexex/build/_deps/googletest-src/googletest -isystem /Users/darasegoleva/Documents/с++/labwork9-Keyplexex/build/_deps/googletest-src/googlemock/include -isystem /Users/darasegoleva/Documents/с++/labwork9-Keyplexex/build/_deps/googletest-src/googlemock -g -std=gnu++2b -arch arm64 -o CMakeFiles/tests.dir/test.cpp.o -c /Users/darasegoleva/Documents/с++/labwork9-Keyplexex/test/test.cpp",
+  "file": "/Users/darasegoleva/Documents/с++/labwork9-Keyplexex/test/test.cpp",
+  "output": "test/CMakeFiles/tests.dir/test.cpp.o"
+},
+{
+  "directory": "/Users/darasegoleva/Documents/с++/labwork9-Keyplexex/build/_deps/googletest-build/googlemock",
+  "command": "/usr/bin/clang++  -I/Users/darasegoleva/Documents/с++/labwork9-Keyplexex/lib -I/Users/darasegoleva/Documents/с++/labwork9-Keyplexex/build/_deps/googletest-src/googlemock/include -I/Users/darasegoleva/Documents/с++/labwork9-Keyplexex/build/_deps/googletest-src/googlemock -isystem /Users/darasegoleva/Documents/с++/labwork9-Keyplexex/build/_deps/googletest-src/googletest/include -isystem /Users/darasegoleva/Documents/с++/labwork9-Keyplexex/build/_deps/googletest-src/googletest -g -std=c++2b -arch arm64  -DGTEST_HAS_PTHREAD=1   -o CMakeFiles/gmock.dir/src/gmock-all.cc.o -c /Users/darasegoleva/Documents/с++/labwork9-Keyplexex/build/_deps/googletest-src/googlemock/src/gmock-all.cc",
+  "file": "/Users/darasegoleva/Documents/с++/labwork9-Keyplexex/build/_deps/googletest-src/googlemock/src/gmock-all.cc",
+  "output": "_deps/googletest-build/googlemock/CMakeFiles/gmock.dir/src/gmock-all.cc.o"
+},
+{
+  "directory": "/Users/darasegoleva/Documents/с++/labwork9-Keyplexex/build/_deps/googletest-build/googlemock",
+  "command": "/usr/bin/clang++  -I/Users/darasegoleva/Documents/с++/labwork9-Keyplexex/lib -isystem /Users/darasegoleva/Documents/с++/labwork9-Keyplexex/build/_deps/googletest-src/googlemock/include -isystem /Users/darasegoleva/Documents/с++/labwork9-Keyplexex/build/_deps/googletest-src/googlemock -isystem /Users/darasegoleva/Documents/с++/labwork9-Keyplexex/build/_deps/googletest-src/googletest/include -isystem /Users/darasegoleva/Documents/с++/labwork9-Keyplexex/build/_deps/googletest-src/googletest -g -std=c++2b -arch arm64  -DGTEST_HAS_PTHREAD=1   -o CMakeFiles/gmock_main.dir/src/gmock_main.cc.o -c /Users/darasegoleva/Documents/с++/labwork9-Keyplexex/build/_deps/googletest-src/googlemock/src/gmock_main.cc",
+  "file": "/Users/darasegoleva/Documents/с++/labwork9-Keyplexex/build/_deps/googletest-src/googlemock/src/gmock_main.cc",
+  "output": "_deps/googletest-build/googlemock/CMakeFiles/gmock_main.dir/src/gmock_main.cc.o"
+},
+{
+  "directory": "/Users/darasegoleva/Documents/с++/labwork9-Keyplexex/build/_deps/googletest-build/googletest",
+  "command": "/usr/bin/clang++  -I/Users/darasegoleva/Documents/с++/labwork9-Keyplexex/lib -I/Users/darasegoleva/Documents/с++/labwork9-Keyplexex/build/_deps/googletest-src/googletest/include -I/Users/darasegoleva/Documents/с++/labwork9-Keyplexex/build/_deps/googletest-src/googletest -g -std=c++2b -arch arm64  -DGTEST_HAS_PTHREAD=1   -o CMakeFiles/gtest.dir/src/gtest-all.cc.o -c /Users/darasegoleva/Documents/с++/labwork9-Keyplexex/build/_deps/googletest-src/googletest/src/gtest-all.cc",
+  "file": "/Users/darasegoleva/Documents/с++/labwork9-Keyplexex/build/_deps/googletest-src/googletest/src/gtest-all.cc",
+  "output": "_deps/googletest-build/googletest/CMakeFiles/gtest.dir/src/gtest-all.cc.o"
+},
+{
+  "directory": "/Users/darasegoleva/Documents/с++/labwork9-Keyplexex/build/_deps/googletest-build/googletest",
+  "command": "/usr/bin/clang++  -I/Users/darasegoleva/Documents/с++/labwork9-Keyplexex/lib -isystem /Users/darasegoleva/Documents/с++/labwork9-Keyplexex/build/_deps/googletest-src/googletest/include -isystem /Users/darasegoleva/Documents/с++/labwork9-Keyplexex/build/_deps/googletest-src/googletest -g -std=c++2b -arch arm64  -DGTEST_HAS_PTHREAD=1   -o CMakeFiles/gtest_main.dir/src/gtest_main.cc.o -c /Users/darasegoleva/Documents/с++/labwork9-Keyplexex/build/_deps/googletest-src/googletest/src/gtest_main.cc",
+  "file": "/Users/darasegoleva/Documents/с++/labwork9-Keyplexex/build/_deps/googletest-src/googletest/src/gtest_main.cc",
+  "output": "_deps/googletest-build/googletest/CMakeFiles/gtest_main.dir/src/gtest_main.cc.o"
+}
+]
