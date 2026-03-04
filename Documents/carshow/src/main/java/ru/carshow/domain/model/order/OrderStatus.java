@@ -1,0 +1,6 @@
+package ru.carshow.domain.model.order;
+
+public enum OrderStatus {
+    CREATED, CONFIRMED_BY_MANAGER, CONFIRMED_BY_WAREHOUSE, AWAITING_PAYMENT, 
+    PAID, AWAITING_DELIVERY, READY_FOR_PICKUP, COMPLETED, CANCELLED
+}
