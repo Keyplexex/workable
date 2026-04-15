@@ -1,8 +1,13 @@
 package ru.carshow.service;
 
+import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
+import lombok.RequiredArgsConstructor;
+
 import ru.carshow.dto.Client;
 import ru.carshow.dto.User;
 import ru.carshow.entity.ClientEntity;
+import ru.carshow.entity.SystemAdminEntity;
 import ru.carshow.entity.UserEntity;
 import ru.carshow.repository.UserRepository;
 import ru.carshow.mapper.UserMapper;
@@ -13,15 +18,15 @@ import java.util.UUID;
 import java.util.stream.Collectors;
 import java.util.stream.StreamSupport;
 
+@Service                         
+@RequiredArgsConstructor       
+@Transactional(readOnly = true)
 public class UserService {
-    private final UserRepository userRepository;
-    private final UserMapper userMapper;
     
-    public UserService(UserRepository userRepository, UserMapper userMapper) {
-        this.userRepository = userRepository;
-        this.userMapper = userMapper;
-    }
+    private final UserRepository userRepository;  
+    private final UserMapper userMapper;        
     
+    @Transactional
     public Client createClient(String name, String email, String phone) {
         validateUserData(name, email, phone);
         
@@ -46,25 +51,6 @@ public class UserService {
             .collect(Collectors.toList());
     }
     
-    public User updateUser(UUID id, String name, String email, String phone) {
-        UserEntity entity = userRepository.findById(id)
-            .orElseThrow(() -> new RuntimeException("User not found: " + id));
-        
-        if (name != null && !name.trim().isEmpty()) entity.setName(name);
-        if (email != null && !email.trim().isEmpty()) entity.setEmail(email);
-        if (phone != null && !phone.trim().isEmpty()) entity.setPhone(phone);
-        
-        UserEntity updated = userRepository.save(entity);
-        return userMapper.toResponse(updated);
-    }
-    
-    public void deleteUser(UUID id) {
-        UserEntity entity = userRepository.findById(id)
-            .orElseThrow(() -> new RuntimeException("User not found: " + id));
-        entity.setRemoved(true);
-        userRepository.save(entity);
-    }
-    
     private void validateUserData(String name, String email, String phone) {
         if (name == null || name.trim().isEmpty())
             throw new DomainValidationException("Name cannot be empty");
@@ -72,5 +58,16 @@ public class UserService {
             throw new DomainValidationException("Invalid email");
         if (phone == null || phone.trim().isEmpty())
             throw new DomainValidationException("Phone cannot be empty");
+    }
+
+    @Transactional
+    public void deleteByID(UUID id) {
+        UserEntity entity = userRepository.findById(id)
+            .orElseThrow(() -> new DomainValidationException("User not found: " + id));
+        if (entity instanceof SystemAdminEntity) {
+            throw new DomainValidationException("Cannot delete system administrator");
+        }
+        entity.setRemoved(true);
+        userRepository.save(entity);
     }
 }
