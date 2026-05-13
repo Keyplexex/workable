@@ -1,0 +1,40 @@
+plugins {
+    id 'java-library'
+    id 'com.google.protobuf' version '0.9.4'
+}
+
+java {
+    sourceCompatibility = JavaVersion.VERSION_17
+    targetCompatibility = JavaVersion.VERSION_17
+}
+
+def grpcVersion = '1.60.1'
+def protobufVersion = '3.25.3'
+
+dependencies {
+    api "io.grpc:grpc-stub:${grpcVersion}"
+    api "io.grpc:grpc-protobuf:${grpcVersion}"
+    api "com.google.protobuf:protobuf-java:${protobufVersion}"
+    compileOnly 'javax.annotation:javax.annotation-api:1.3.2'
+    compileOnly 'jakarta.annotation:jakarta.annotation-api:2.1.1'
+}
+
+protobuf {
+    protoc {
+        artifact = "com.google.protobuf:protoc:${protobufVersion}"
+    }
+    plugins {
+        grpc {
+            artifact = "io.grpc:protoc-gen-grpc-java:${grpcVersion}"
+        }
+    }
+    generateProtoTasks {
+        all().configureEach { task ->
+            task.plugins {
+                grpc {
+                    option 'jakarta_rpc'
+                }
+            }
+        }
+    }
+}

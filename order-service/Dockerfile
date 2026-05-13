@@ -3,6 +3,7 @@ WORKDIR /workspace
 COPY gradlew settings.gradle build.gradle ./
 COPY gradle ./gradle
 COPY carshow-events ./carshow-events
+COPY carshow-grpc-contract ./carshow-grpc-contract
 COPY order-service ./order-service
 RUN chmod +x ./gradlew && ./gradlew :order-service:bootJar --no-daemon -x test
 

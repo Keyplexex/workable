@@ -17,6 +17,14 @@ spring:
 storage:
   base-url: ""
   service-token: ""
+  grpc:
+    deadline-ms: 2000
+
+grpc:
+  client:
+    storage:
+      address: static://127.0.0.1:9090
+      negotiation-type: plaintext
 
 springdoc:
   api-docs:

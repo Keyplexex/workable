@@ -64,6 +64,8 @@ services:
       SPRING_SECURITY_OAUTH2_RESOURCESERVER_JWT_ISSUER_URI: http://keycloak:8080/realms/carshow-realm
       STORAGE_BASE_URL: http://storage-service:8082
       STORAGE_SERVICE_TOKEN: change-me-internal
+      STORAGE_GRPC_HOST: storage-service
+      STORAGE_GRPC_PORT: 9090
     depends_on:
       postgres-order:
         condition: service_healthy
@@ -79,6 +81,7 @@ services:
     container_name: carshow_storage_service
     ports:
       - "8082:8082"
+      - "9090:9090"
     environment:
       SPRING_DATASOURCE_URL: jdbc:postgresql://postgres-storage:5432/storage_db
       SPRING_RABBITMQ_HOST: rabbitmq

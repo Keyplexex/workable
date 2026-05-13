@@ -14,9 +14,6 @@ import org.springframework.web.client.RestTemplate;
 import java.time.Duration;
 import java.util.UUID;
 
-/**
- * Проверка автомобиля на складе (внутренний вызов без JWT пользователя).
- */
 @Slf4j
 @Component
 public class StorageInternalClient {

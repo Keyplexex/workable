@@ -32,7 +32,6 @@
             <column name="status" value="AVAILABLE"/>
             <column name="model_id" value="10000000-0000-0000-0000-000000000001"/>
         </insert>
-        <!-- Part IDs совпадают с component IDs в OrderService для складского резерва -->
         <insert tableName="parts">
             <column name="id" value="30000000-0000-0000-0000-000000000001"/>
             <column name="created_at" valueComputed="now()"/>

@@ -11,6 +11,9 @@ java {
 
 dependencies {
     implementation project(':carshow-events')
+    implementation project(':carshow-grpc-contract')
+
+    implementation 'net.devh:grpc-client-spring-boot-starter:3.1.0.RELEASE'
 
     implementation 'org.springframework.boot:spring-boot-starter-web'
     implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
@@ -38,6 +41,7 @@ dependencies {
     testImplementation 'org.testcontainers:junit-jupiter:1.19.3'
     testImplementation 'org.testcontainers:postgresql:1.19.3'
     testImplementation 'org.testcontainers:rabbitmq:1.19.3'
+    testImplementation 'io.grpc:grpc-testing:1.60.1'
     testCompileOnly 'org.projectlombok:lombok:1.18.30'
     testAnnotationProcessor 'org.projectlombok:lombok:1.18.30'
 }

@@ -30,6 +30,14 @@ spring:
 storage:
   base-url: http://localhost:8082
   service-token: change-me-internal
+  grpc:
+    deadline-ms: 2000
+
+grpc:
+  client:
+    storage:
+      address: static://${STORAGE_GRPC_HOST:localhost}:${STORAGE_GRPC_PORT:9090}
+      negotiation-type: plaintext
 
 order:
   outbox:

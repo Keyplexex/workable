@@ -1,0 +1,44 @@
+syntax = "proto3";
+
+package ru.carshow.grpc.inventory;
+
+option java_multiple_files = true;
+option java_package = "ru.carshow.grpc.inventory";
+option java_outer_classname = "CarInventoryProto";
+
+message Empty {}
+
+message CarIdRequest {
+  string id = 1;
+}
+
+message CarInventoryMessage {
+  string id = 1;
+  string vin = 2;
+  int32 year = 3;
+  string color = 4;
+  string engine_power = 5;
+  string engine_volume = 6;
+  string fuel_type = 7;
+  string transmission = 8;
+  string drive_type = 9;
+  string price = 10;
+  string status = 11;
+  string model_id = 12;
+  string model_brand = 13;
+  string model_name = 14;
+}
+
+message CarListResponse {
+  repeated CarInventoryMessage cars = 1;
+}
+
+message CarSingleResponse {
+  bool found = 1;
+  CarInventoryMessage car = 2;
+}
+
+service CarInventoryService {
+  rpc ListAvailableCars(Empty) returns (CarListResponse);
+  rpc GetAvailableCar(CarIdRequest) returns (CarSingleResponse);
+}
