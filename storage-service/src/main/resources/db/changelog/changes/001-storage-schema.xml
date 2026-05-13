@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+                   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                   xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+                   http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.20.xsd">
+
+    <changeSet id="st-1" author="carshow">
+        <sql>CREATE EXTENSION IF NOT EXISTS "pgcrypto";</sql>
+    </changeSet>
+
+    <changeSet id="st-2" author="carshow">
+        <createTable tableName="car_models">
+            <column name="id" type="uuid"><constraints primaryKey="true"/></column>
+            <column name="created_at" type="timestamp with time zone"><constraints nullable="false"/></column>
+            <column name="updated_at" type="timestamp with time zone"/>
+            <column name="removed" type="boolean" defaultValueBoolean="false"><constraints nullable="false"/></column>
+            <column name="brand" type="varchar(100)"/>
+            <column name="name" type="varchar(100)"/>
+            <column name="base_price" type="decimal(15,2)"/>
+            <column name="body_type" type="varchar(50)"/>
+        </createTable>
+    </changeSet>
+
+    <changeSet id="st-3" author="carshow">
+        <createTable tableName="cars">
+            <column name="id" type="uuid"><constraints primaryKey="true"/></column>
+            <column name="created_at" type="timestamp with time zone"><constraints nullable="false"/></column>
+            <column name="updated_at" type="timestamp with time zone"/>
+            <column name="removed" type="boolean" defaultValueBoolean="false"><constraints nullable="false"/></column>
+            <column name="vin" type="varchar(17)"><constraints nullable="false" unique="true"/></column>
+            <column name="year" type="integer"/>
+            <column name="color" type="varchar(50)"/>
+            <column name="engine_power" type="decimal(10,2)"/>
+            <column name="engine_volume" type="decimal(5,2)"/>
+            <column name="fuel_type" type="varchar(50)"/>
+            <column name="transmission" type="varchar(50)"/>
+            <column name="drive_type" type="varchar(50)"/>
+            <column name="price" type="decimal(15,2)"/>
+            <column name="status" type="varchar(50)"/>
+            <column name="model_id" type="uuid"/>
+        </createTable>
+        <addForeignKeyConstraint baseTableName="cars" baseColumnNames="model_id"
+                                 constraintName="fk_st_cars_model"
+                                 referencedTableName="car_models" referencedColumnNames="id"/>
+    </changeSet>
+
+    <changeSet id="st-4" author="carshow">
+        <createTable tableName="parts">
+            <column name="id" type="uuid"><constraints primaryKey="true"/></column>
+            <column name="created_at" type="timestamp with time zone"><constraints nullable="false"/></column>
+            <column name="updated_at" type="timestamp with time zone"/>
+            <column name="removed" type="boolean" defaultValueBoolean="false"><constraints nullable="false"/></column>
+            <column name="name" type="varchar(255)"/>
+            <column name="category" type="varchar(100)"/>
+            <column name="price" type="decimal(10,2)"/>
+            <column name="manufacturer" type="varchar(255)"/>
+            <column name="part_number" type="varchar(100)"/>
+            <column name="quantity" type="integer"/>
+        </createTable>
+    </changeSet>
+
+    <changeSet id="st-5" author="carshow">
+        <createTable tableName="parts_compatible_models">
+            <column name="part_id" type="uuid"/>
+            <column name="car_model_id" type="uuid"/>
+        </createTable>
+        <addPrimaryKey tableName="parts_compatible_models" columnNames="part_id, car_model_id"
+                       constraintName="pk_st_pcm"/>
+        <addForeignKeyConstraint baseTableName="parts_compatible_models" baseColumnNames="part_id"
+                                 constraintName="fk_st_pcm_part"
+                                 referencedTableName="parts" referencedColumnNames="id"/>
+        <addForeignKeyConstraint baseTableName="parts_compatible_models" baseColumnNames="car_model_id"
+                                 constraintName="fk_st_pcm_model"
+                                 referencedTableName="car_models" referencedColumnNames="id"/>
+    </changeSet>
+
+    <changeSet id="st-6" author="carshow">
+        <createTable tableName="assembly_orders">
+            <column name="id" type="uuid"><constraints primaryKey="true"/></column>
+            <column name="created_at" type="timestamp with time zone"><constraints nullable="false"/></column>
+            <column name="updated_at" type="timestamp with time zone"/>
+            <column name="removed" type="boolean" defaultValueBoolean="false"><constraints nullable="false"/></column>
+            <column name="source_order_id" type="uuid"><constraints nullable="false"/></column>
+            <column name="source_order_type" type="varchar(50)"><constraints nullable="false"/></column>
+            <column name="car_id" type="uuid"/>
+            <column name="car_model_id" type="uuid"/>
+            <column name="required_parts_json" type="jsonb"/>
+            <column name="warehouse_operator_id" type="uuid"/>
+            <column name="status" type="varchar(50)"/>
+        </createTable>
+    </changeSet>
+
+    <changeSet id="st-7" author="carshow">
+        <createTable tableName="outbox_message">
+            <column name="id" type="uuid"><constraints primaryKey="true"/></column>
+            <column name="created_at" type="timestamp with time zone"><constraints nullable="false"/></column>
+            <column name="published_at" type="timestamp with time zone"/>
+            <column name="aggregate_type" type="varchar(64)"><constraints nullable="false"/></column>
+            <column name="aggregate_id" type="uuid"><constraints nullable="false"/></column>
+            <column name="routing_key" type="varchar(128)"><constraints nullable="false"/></column>
+            <column name="payload" type="text"><constraints nullable="false"/></column>
+        </createTable>
+    </changeSet>
+
+    <changeSet id="st-8" author="carshow">
+        <createTable tableName="processed_incoming_event">
+            <column name="event_id" type="uuid"><constraints primaryKey="true"/></column>
+            <column name="processed_at" type="timestamp with time zone"><constraints nullable="false"/></column>
+        </createTable>
+    </changeSet>
+</databaseChangeLog>

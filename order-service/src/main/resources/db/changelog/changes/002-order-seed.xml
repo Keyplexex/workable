@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+                   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                   xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+                   http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.20.xsd">
+
+    <changeSet id="order-seed-users-model" author="carshow">
+        <insert tableName="users">
+            <column name="id" value="20000000-0000-0000-0000-000000000001"/>
+            <column name="created_at" valueComputed="now()"/>
+            <column name="updated_at" valueComputed="now()"/>
+            <column name="removed" valueBoolean="false"/>
+            <column name="dtype" value="Manager"/>
+            <column name="name" value="Иван Менеджеров"/>
+            <column name="email" value="manager@carshow.ru"/>
+            <column name="phone" value="+79991234567"/>
+        </insert>
+        <insert tableName="users">
+            <column name="id" value="20000000-0000-0000-0000-000000000002"/>
+            <column name="created_at" valueComputed="now()"/>
+            <column name="updated_at" valueComputed="now()"/>
+            <column name="removed" valueBoolean="false"/>
+            <column name="dtype" value="Client"/>
+            <column name="name" value="Алексей Клиентов"/>
+            <column name="email" value="client@example.com"/>
+            <column name="phone" value="+79997654321"/>
+        </insert>
+        <insert tableName="car_models">
+            <column name="id" value="10000000-0000-0000-0000-000000000001"/>
+            <column name="created_at" valueComputed="now()"/>
+            <column name="updated_at" valueComputed="now()"/>
+            <column name="removed" valueBoolean="false"/>
+            <column name="brand" value="BMW"/>
+            <column name="name" value="320i"/>
+            <column name="base_price" value="3500000.00"/>
+            <column name="body_type" value="SEDAN"/>
+        </insert>
+    </changeSet>
+
+    <changeSet id="order-seed-components" author="carshow">
+        <insert tableName="components">
+            <column name="id" value="30000000-0000-0000-0000-000000000001"/>
+            <column name="created_at" valueComputed="now()"/>
+            <column name="updated_at" valueComputed="now()"/>
+            <column name="removed" valueBoolean="false"/>
+            <column name="name" value="Двигатель 2.0 базовый"/>
+            <column name="type" value="ENGINE"/>
+            <column name="price_supplement" value="0"/>
+            <column name="is_default" valueBoolean="true"/>
+            <column name="car_model_id" value="10000000-0000-0000-0000-000000000001"/>
+        </insert>
+        <insert tableName="components">
+            <column name="id" value="30000000-0000-0000-0000-000000000002"/>
+            <column name="created_at" valueComputed="now()"/>
+            <column name="updated_at" valueComputed="now()"/>
+            <column name="removed" valueBoolean="false"/>
+            <column name="name" value="Двигатель 2.0 Sport"/>
+            <column name="type" value="ENGINE"/>
+            <column name="price_supplement" value="150000.00"/>
+            <column name="is_default" valueBoolean="false"/>
+            <column name="car_model_id" value="10000000-0000-0000-0000-000000000001"/>
+        </insert>
+        <insert tableName="components">
+            <column name="id" value="30000000-0000-0000-0000-000000000003"/>
+            <column name="created_at" valueComputed="now()"/>
+            <column name="updated_at" valueComputed="now()"/>
+            <column name="removed" valueBoolean="false"/>
+            <column name="name" value="АКПП"/>
+            <column name="type" value="TRANSMISSION"/>
+            <column name="price_supplement" value="0"/>
+            <column name="is_default" valueBoolean="true"/>
+            <column name="car_model_id" value="10000000-0000-0000-0000-000000000001"/>
+        </insert>
+        <insert tableName="components_compatible_models">
+            <column name="component_id" value="30000000-0000-0000-0000-000000000001"/>
+            <column name="car_model_id" value="10000000-0000-0000-0000-000000000001"/>
+        </insert>
+        <insert tableName="components_compatible_models">
+            <column name="component_id" value="30000000-0000-0000-0000-000000000002"/>
+            <column name="car_model_id" value="10000000-0000-0000-0000-000000000001"/>
+        </insert>
+        <insert tableName="components_compatible_models">
+            <column name="component_id" value="30000000-0000-0000-0000-000000000003"/>
+            <column name="car_model_id" value="10000000-0000-0000-0000-000000000001"/>
+        </insert>
+    </changeSet>
+</databaseChangeLog>

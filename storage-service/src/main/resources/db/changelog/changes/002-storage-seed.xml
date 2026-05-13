@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+                   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                   xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+                   http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.20.xsd">
+
+    <changeSet id="st-seed-model-car-parts" author="carshow">
+        <insert tableName="car_models">
+            <column name="id" value="10000000-0000-0000-0000-000000000001"/>
+            <column name="created_at" valueComputed="now()"/>
+            <column name="updated_at" valueComputed="now()"/>
+            <column name="removed" valueBoolean="false"/>
+            <column name="brand" value="BMW"/>
+            <column name="name" value="320i"/>
+            <column name="base_price" value="3500000.00"/>
+            <column name="body_type" value="SEDAN"/>
+        </insert>
+        <insert tableName="cars">
+            <column name="id" value="40000000-0000-0000-0000-000000000001"/>
+            <column name="created_at" valueComputed="now()"/>
+            <column name="updated_at" valueComputed="now()"/>
+            <column name="removed" valueBoolean="false"/>
+            <column name="vin" value="WBA00000000000001"/>
+            <column name="year" valueNumeric="2023"/>
+            <column name="color" value="Черный"/>
+            <column name="engine_power" value="184.0"/>
+            <column name="engine_volume" value="2.0"/>
+            <column name="fuel_type" value="GASOLINE"/>
+            <column name="transmission" value="AUTOMATIC"/>
+            <column name="drive_type" value="RWD"/>
+            <column name="price" value="3700000.00"/>
+            <column name="status" value="AVAILABLE"/>
+            <column name="model_id" value="10000000-0000-0000-0000-000000000001"/>
+        </insert>
+        <!-- Part IDs совпадают с component IDs в OrderService для складского резерва -->
+        <insert tableName="parts">
+            <column name="id" value="30000000-0000-0000-0000-000000000001"/>
+            <column name="created_at" valueComputed="now()"/>
+            <column name="updated_at" valueComputed="now()"/>
+            <column name="removed" valueBoolean="false"/>
+            <column name="name" value="Двигатель 2.0 базовый (склад)"/>
+            <column name="category" value="ENGINE"/>
+            <column name="price" value="0"/>
+            <column name="manufacturer" value="BMW"/>
+            <column name="part_number" value="ENG-BASE"/>
+            <column name="quantity" value="20"/>
+        </insert>
+        <insert tableName="parts">
+            <column name="id" value="30000000-0000-0000-0000-000000000002"/>
+            <column name="created_at" valueComputed="now()"/>
+            <column name="updated_at" valueComputed="now()"/>
+            <column name="removed" valueBoolean="false"/>
+            <column name="name" value="Двигатель 2.0 Sport (склад)"/>
+            <column name="category" value="ENGINE"/>
+            <column name="price" value="150000"/>
+            <column name="manufacturer" value="BMW"/>
+            <column name="part_number" value="ENG-SPORT"/>
+            <column name="quantity" value="20"/>
+        </insert>
+        <insert tableName="parts">
+            <column name="id" value="30000000-0000-0000-0000-000000000003"/>
+            <column name="created_at" valueComputed="now()"/>
+            <column name="updated_at" valueComputed="now()"/>
+            <column name="removed" valueBoolean="false"/>
+            <column name="name" value="АКПП (склад)"/>
+            <column name="category" value="TRANSMISSION"/>
+            <column name="price" value="0"/>
+            <column name="manufacturer" value="ZF"/>
+            <column name="part_number" value="TR-AUTO"/>
+            <column name="quantity" value="20"/>
+        </insert>
+        <insert tableName="parts_compatible_models">
+            <column name="part_id" value="30000000-0000-0000-0000-000000000001"/>
+            <column name="car_model_id" value="10000000-0000-0000-0000-000000000001"/>
+        </insert>
+        <insert tableName="parts_compatible_models">
+            <column name="part_id" value="30000000-0000-0000-0000-000000000002"/>
+            <column name="car_model_id" value="10000000-0000-0000-0000-000000000001"/>
+        </insert>
+        <insert tableName="parts_compatible_models">
+            <column name="part_id" value="30000000-0000-0000-0000-000000000003"/>
+            <column name="car_model_id" value="10000000-0000-0000-0000-000000000001"/>
+        </insert>
+    </changeSet>
+</databaseChangeLog>

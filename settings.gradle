@@ -1,1 +1,5 @@
 rootProject.name = 'carshow'
+
+include 'carshow-events'
+include 'order-service'
+include 'storage-service'

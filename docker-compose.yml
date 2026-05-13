@@ -1,17 +1,42 @@
 services:
-  postgres:
+  postgres-order:
     image: postgres:15
-    container_name: carshow_postgres
+    container_name: carshow_postgres_order
     environment:
-      POSTGRES_DB: carshow_db
+      POSTGRES_DB: order_db
       POSTGRES_USER: postgres
       POSTGRES_PASSWORD: postgres
     ports:
-      - "5433:5432"
-    volumes:
-      - postgres_app_data:/var/lib/postgresql/data
+      - "5434:5432"
     healthcheck:
       test: ["CMD-SHELL", "pg_isready -U postgres"]
+      interval: 5s
+      timeout: 5s
+      retries: 10
+
+  postgres-storage:
+    image: postgres:15
+    container_name: carshow_postgres_storage
+    environment:
+      POSTGRES_DB: storage_db
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+    ports:
+      - "5435:5432"
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U postgres"]
+      interval: 5s
+      timeout: 5s
+      retries: 10
+
+  rabbitmq:
+    image: rabbitmq:3.13-management-alpine
+    container_name: carshow_rabbitmq
+    ports:
+      - "5672:5672"
+      - "15672:15672"
+    healthcheck:
+      test: ["CMD", "rabbitmq-diagnostics", "-q", "ping"]
       interval: 10s
       timeout: 5s
       retries: 5
@@ -25,9 +50,42 @@ services:
       KEYCLOAK_ADMIN_PASSWORD: admin
     ports:
       - "8080:8080"
-    depends_on:
-      postgres:
-        condition: service_healthy
 
-volumes:
-  postgres_app_data:
+  order-service:
+    build:
+      context: .
+      dockerfile: order-service/Dockerfile
+    container_name: carshow_order_service
+    ports:
+      - "8081:8081"
+    environment:
+      SPRING_DATASOURCE_URL: jdbc:postgresql://postgres-order:5432/order_db
+      SPRING_RABBITMQ_HOST: rabbitmq
+      SPRING_SECURITY_OAUTH2_RESOURCESERVER_JWT_ISSUER_URI: http://keycloak:8080/realms/carshow-realm
+      STORAGE_BASE_URL: http://storage-service:8082
+      STORAGE_SERVICE_TOKEN: change-me-internal
+    depends_on:
+      postgres-order:
+        condition: service_healthy
+      rabbitmq:
+        condition: service_healthy
+      storage-service:
+        condition: service_started
+
+  storage-service:
+    build:
+      context: .
+      dockerfile: storage-service/Dockerfile
+    container_name: carshow_storage_service
+    ports:
+      - "8082:8082"
+    environment:
+      SPRING_DATASOURCE_URL: jdbc:postgresql://postgres-storage:5432/storage_db
+      SPRING_RABBITMQ_HOST: rabbitmq
+      SPRING_SECURITY_OAUTH2_RESOURCESERVER_JWT_ISSUER_URI: http://keycloak:8080/realms/carshow-realm
+      STORAGE_SERVICE_TOKEN: change-me-internal
+    depends_on:
+      postgres-storage:
+        condition: service_healthy
+      rabbitmq:
+        condition: service_healthy
