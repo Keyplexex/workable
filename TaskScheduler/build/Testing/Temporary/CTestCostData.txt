@@ -1,0 +1,11 @@
+TaskSchedulerTest.SimpleTask 19 0.0047586
+TaskSchedulerTest.DependencyTask 19 0.00584961
+TaskSchedulerTest.MultipleDependencies 19 0.00832048
+TaskSchedulerTest.MemberFunctionTask 19 0.00467516
+TaskSchedulerTest.LazyEvaluation 19 0.00859415
+TaskSchedulerTest.ExecuteAllTasks 19 0.00578416
+TaskSchedulerTest.UnusedBranchNotExecuted 0 0
+TaskSchedulerTest.GetResultTwice 19 0.00618725
+TaskSchedulerTest.CircularDependency 0 0
+TaskSchedulerTest.IncompleteTaskExecution 17 0.008385
+---

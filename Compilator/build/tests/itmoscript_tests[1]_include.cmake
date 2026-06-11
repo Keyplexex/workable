@@ -1,0 +1,5 @@
+if(EXISTS "/Users/darasegoleva/Documents/с++/labwork10-Keyplexex/build/tests/itmoscript_tests[1]_tests.cmake")
+  include("/Users/darasegoleva/Documents/с++/labwork10-Keyplexex/build/tests/itmoscript_tests[1]_tests.cmake")
+else()
+  add_test(itmoscript_tests_NOT_BUILT itmoscript_tests_NOT_BUILT)
+endif()
